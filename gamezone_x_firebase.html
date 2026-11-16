@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#09090d"><title>GameZone X | Gaming Community</title>
+<style>
+:root{--bg:#09090d;--panel:#15151d;--panel2:#20202a;--red:#f12b3d;--text:#f5f5f7;--muted:#a6a6b2;--line:#30303b}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0%,#301018 0,transparent 30%),var(--bg);color:var(--text);font-family:system-ui,"Noto Sans Bengali","Noto Sans Devanagari",Arial,sans-serif}
+.wrap{max-width:1000px;margin:auto;padding:0 14px}header{position:sticky;top:0;z-index:5;background:#0b0b0fee;border-bottom:1px solid var(--line)}.top{display:flex;justify-content:space-between;align-items:center;padding:13px 0;gap:10px}.brand{font-size:22px;font-weight:950}.brand span{color:var(--red)}.tag,.muted,.notice{color:var(--muted);font-size:12px}.lang,input,textarea,select{background:#0e0e14;color:white;border:1px solid var(--line);border-radius:10px;padding:11px;font:inherit}.lang{padding:8px}.hero{padding:28px 0 18px}.eyebrow{color:#ff6877;font-weight:800;letter-spacing:2px;font-size:12px}h1{font-size:clamp(29px,7vw,48px);margin:8px 0}h1 em{color:var(--red);font-style:normal}.sub{color:var(--muted);line-height:1.6}.layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:15px;padding-bottom:35px}.card,.side{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px}.side{background:#1b1117;border-color:#48202a}.section{display:flex;align-items:center;justify-content:space-between;margin:10px 0 12px}h2{font-size:18px;margin:0 0 10px}.btn{border:0;border-radius:10px;padding:10px 14px;background:var(--red);color:white;font-weight:800;cursor:pointer}.btn:disabled{opacity:.5}.secondary{background:var(--panel2);border:1px solid var(--line)}.filters{display:flex;gap:7px;overflow:auto;margin-bottom:10px}.filter{white-space:nowrap;background:var(--panel);border:1px solid var(--line);color:var(--muted);border-radius:20px;padding:7px 11px}.filter.active{background:#40131b;border-color:var(--red);color:white}.form{display:grid;gap:9px}.posthead{display:flex;align-items:center;gap:9px}.avatar{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--red),#5b1020);display:grid;place-items:center;font-weight:900}.posthead small{display:block;color:var(--muted);font-size:11px}.pill{margin-left:auto;color:#ff8290;border:1px solid #61202a;border-radius:20px;padding:4px 8px;font-size:10px}.posttitle{font-weight:850;margin:12px 0 5px}.postbody{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.5;color:#d0d0d8}.actions{display:flex;gap:12px;margin-top:12px;padding-top:9px;border-top:1px solid var(--line)}.mini{border:0;background:none;color:var(--muted);padding:5px;cursor:pointer}.comments{margin-top:8px}.comment{padding:7px 0;border-bottom:1px solid var(--line);font-size:13px;overflow-wrap:anywhere}.commentform{display:flex;gap:6px;margin-top:8px}.commentform input{min-width:0;flex:1}.chatbox{height:290px;overflow:auto;background:#0e0e14;border:1px solid var(--line);border-radius:10px;padding:9px;margin:9px 0}.msg{padding:7px 0;border-bottom:1px solid #252530;font-size:13px;overflow-wrap:anywhere}.msg small{color:var(--muted)}.chatform{display:flex;gap:6px}.chatform input{min-width:0;flex:1}.status{font-size:12px;color:#ffb3bc;margin:7px 0}.good{color:#72dfa5}.hidden{display:none!important}footer{text-align:center;color:var(--muted);font-size:12px;padding:20px;border-top:1px solid var(--line)}
+@media(max-width:760px){.layout{grid-template-columns:1fr}.sidebar{display:block}.chatbox{height:320px}}
+</style>
+</head>
+<body>
+<header><div class="wrap top"><div><div class="brand">GAMEZONE <span>X</span></div><div class="tag">PLAY • CONNECT • LEVEL UP</div></div><select class="lang" id="language"><option value="en">English</option><option value="bn">বাংলা</option><option value="hi">हिन्दी</option></select></div></header>
+<main class="wrap">
+<section class="hero"><div class="eyebrow">THE GAMING COMMUNITY</div><h1>YOUR GAME. <em>YOUR</em> COMMUNITY.</h1><p class="sub">Talk gaming, share settings, discover useful tools and meet players.</p><div id="status" class="status">Firebase setup required — add your project config to connect the community.</div></section>
+<div class="layout">
+<section>
+<div class="section"><h2>Latest discussions</h2><span class="tag">GZX / FEED</span></div>
+<div class="filters" id="filters"><button class="filter active" data-cat="All">All</button><button class="filter" data-cat="Discussion">Discussion</button><button class="filter" data-cat="Settings">Settings</button><button class="filter" data-cat="Tools">Gaming tools</button><button class="filter" data-cat="Updates">Game updates</button></div>
+<div id="posts"><div class="card">Connect Firebase to load community posts.</div></div>
+</section>
+<aside class="sidebar">
+<div class="card"><h2>Share with gamers</h2><form id="postForm" class="form"><input id="postTitle" maxlength="80" required placeholder="Post title"><select id="postCategory"><option>Discussion</option><option>Settings</option><option>Tools</option><option>Updates</option></select><textarea id="postBody" maxlength="700" required placeholder="Write your post..."></textarea><input id="nickname" maxlength="24" placeholder="Nickname (no personal details)"><button class="btn" type="submit">Publish post</button></form><p class="notice">Do not share passwords, phone numbers, addresses or private information.</p></div>
+<div class="card"><h2>🔴 Community Live Chat</h2><div id="chatStatus" class="notice">Connect Firebase to join chat.</div><div id="chatbox" class="chatbox" aria-live="polite"></div><form id="chatForm" class="chatform"><input id="chatInput" maxlength="300" required placeholder="Write a message..."><button class="btn" type="submit">Send</button></form><p class="notice">Be respectful. Never share personal details. Messages are visible to community members.</p></div>
+<div class="side"><h2>Community rules</h2><p class="notice">Be respectful. Share legitimate gaming tips only. No cheats, stolen accounts, malware, harassment or private information.</p></div>
+</aside></div></main><footer>© <span id="year"></span> GameZone X · Built for the gaming community.</footer>
+
+<!-- Firebase SDK and app logic -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+import { getDatabase, ref, push, set, onValue, query, limitToLast, serverTimestamp, runTransaction } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
+
+/* STEP: Replace every placeholder below with your Firebase project's Web app config. */
+const firebaseConfig = {
+  apiKey: "PASTE_API_KEY",
+  authDomain: "PASTE_PROJECT_ID.firebaseapp.com",
+  databaseURL: "https://PASTE_PROJECT_ID-default-rtdb.firebaseio.com",
+  projectId: "PASTE_PROJECT_ID",
+  storageBucket: "PASTE_PROJECT_ID.appspot.com",
+  messagingSenderId: "PASTE_MESSAGING_SENDER_ID",
+  appId: "PASTE_APP_ID"
+};
+
+const $ = id => document.getElementById(id);
+const status = $("status");
+let db, user = null, category = "All", postsCache = {};
+const safe = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const nickname = () => ($("nickname").value.trim() || "Gamer").slice(0,24);
+const blocked = /(password|stolen account|malware|cheat panel|হ্যাক|পাসওয়ার্ড|চুরি করা অ্যাকাউন্ট|पासवर्ड|हैक अकाउंट)/i;
+function showError(e){ console.error(e); status.textContent = "Connection error: " + (e?.message || "Check Firebase setup and database rules."); status.classList.remove("good"); }
+function renderPosts(){
+  const entries = Object.entries(postsCache).map(([id,p])=>({id,...p})).filter(p=>category==="All"||p.category===category).sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
+  $("posts").innerHTML = entries.length ? entries.map(p=>`
+  <article class="card">
+   <div class="posthead"><div class="avatar">${safe((p.author||"G").slice(0,1).toUpperCase())}</div><div><b>${safe(p.author||"Gamer")}</b><small>${p.createdAt ? new Date(p.createdAt).toLocaleString() : "Just now"}</small></div><span class="pill">${safe(p.category)}</span></div>
+   <div class="posttitle">${safe(p.title)}</div><div class="postbody">${safe(p.body)}</div>
+   <div class="actions"><button class="mini" data-like="${p.id}">♥ Like (${p.likes||0})</button><span class="notice">Comments</span></div>
+   <div class="comments" id="comments-${p.id}"><div class="notice">Loading comments…</div></div>
+   <form class="commentform" data-comment="${p.id}"><input maxlength="180" required placeholder="Write a comment…"><button class="btn">Send</button></form>
+  </article>`).join("") : '<div class="card">No posts in this category yet.</div>';
+  entries.forEach(p=>listenComments(p.id));
+}
+const commentUnsubs = {};
+function listenComments(postId){
+  if(!db || commentUnsubs[postId]) return;
+  const el = $("comments-"+postId); if(!el) return;
+  const r=ref(db,`posts/${postId}/comments`);
+  const unsub=onValue(r,snap=>{
+    const data=snap.val()||{};
+    const arr=Object.values(data).sort((a,b)=>(a.createdAt||0)-(b.createdAt||0)).slice(-30);
+    const target=$("comments-"+postId); if(target) target.innerHTML=arr.map(c=>`<div class="comment"><b>${safe(c.author)}:</b> ${safe(c.text)}</div>`).join("") || '<div class="notice">No comments yet.</div>';
+  },showError);
+  commentUnsubs[postId]=unsub;
+}
+onAuthStateChanged; // Auth listener is registered after initialization below.
+$("filters").addEventListener("click",e=>{const b=e.target.closest("[data-cat]");if(!b)return;category=b.dataset.cat;document.querySelectorAll(".filter").forEach(x=>x.classList.toggle("active",x===b));renderPosts();});
+$("postForm").addEventListener("submit",async e=>{
+ e.preventDefault(); if(!db||!user){alert("Firebase connection is not ready yet.");return;}
+ const title=$("postTitle").value.trim(), body=$("postBody").value.trim(), cat=$("postCategory").value;
+ if(!title||!body)return; if(blocked.test(title+" "+body)){alert("Please keep posts safe and respectful.");return;}
+ try{const r=push(ref(db,"posts"));await set(r,{title,body,category:cat,author:nickname(),uid:user.uid,createdAt:Date.now(),likes:0});e.target.reset();}
+ catch(err){showError(err);}
+});
+$("posts").addEventListener("click",async e=>{
+ const b=e.target.closest("[data-like]"); if(!b||!db||!user)return;
+ const id=b.dataset.like;
+ try{await runTransaction(ref(db,`posts/${id}/likes`),n=>(n||0)+1);}catch(err){showError(err);}
+});
+$("posts").addEventListener("submit",async e=>{
+ const form=e.target.closest("[data-comment]"); if(!form)return; e.preventDefault();
+ if(!db||!user)return;
+ const id=form.dataset.comment, input=form.querySelector("input"), text=input.value.trim();
+ if(!text||blocked.test(text)){alert("Please keep comments safe and respectful.");return;}
+ try{const r=push(ref(db,`posts/${id}/comments`));await set(r,{author:nickname(),text,uid:user.uid,createdAt:Date.now()});input.value="";}
+ catch(err){showError(err);}
+});
+$("chatForm").addEventListener("submit",async e=>{
+ e.preventDefault();if(!db||!user){alert("Firebase connection is not ready yet.");return;}
+ const input=$("chatInput"), text=input.value.trim();if(!text)return;
+ if(blocked.test(text)){alert("Please keep chat safe and respectful.");return;}
+ try{const r=push(ref(db,"liveChat"));await set(r,{author:nickname(),text,uid:user.uid,createdAt:Date.now()});input.value="";}
+ catch(err){showError(err);}
+});
+$("year").textContent=new Date().getFullYear();
+
+if(firebaseConfig.apiKey==="PASTE_API_KEY" || firebaseConfig.projectId==="PASTE_PROJECT_ID"){
+  status.textContent="Firebase setup required: follow the setup guide, then paste your config into this file.";
+  $("chatStatus").textContent="Waiting for Firebase setup.";
+}else{
+  try{
+    const app=initializeApp(firebaseConfig); const auth=getAuth(app); db=getDatabase(app);
+    await signInAnonymously(auth);
+    onAuthStateChanged(auth, u=>{
+      if(!u)return;user=u;status.textContent="Connected — you are in the GameZone X community.";status.classList.add("good");
+      $("chatStatus").textContent="Live chat connected.";
+      onValue(query(ref(db,"posts"),limitToLast(60)),snap=>{postsCache=snap.val()||{};renderPosts();},showError);
+      onValue(query(ref(db,"liveChat"),limitToLast(80)),snap=>{
+        const messages=Object.values(snap.val()||{}).sort((a,b)=>(a.createdAt||0)-(b.createdAt||0));
+        const box=$("chatbox");box.innerHTML=messages.map(m=>`<div class="msg"><b>${safe(m.author||"Gamer")}</b> <small>${m.createdAt?new Date(m.createdAt).toLocaleTimeString():""}</small><div>${safe(m.text)}</div></div>`).join("");
+        box.scrollTop=box.scrollHeight;
+      },showError);
+    });
+  }catch(e){showError(e);$("chatStatus").textContent="Could not connect. Check Firebase configuration.";}
+}
+</script>
+</body></html>
